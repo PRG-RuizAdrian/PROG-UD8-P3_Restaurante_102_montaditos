@@ -15,9 +15,9 @@ public class ListadoPedidos {
     }
 
     public Pedido filtrarPedido(String codigo){
-        for (int i = 0; i < pedidos.size() ; i++) {
-            if (pedidos.get(i).getId().equals(codigo)){
-                return pedidos.get(i);
+        for (Pedido pedido : pedidos) {
+            if (pedido.getId().equals(codigo)) {
+                return pedido;
             }
         }
         return null;

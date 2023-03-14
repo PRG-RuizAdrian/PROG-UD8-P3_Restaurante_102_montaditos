@@ -22,10 +22,10 @@ public class MostrarPedidos {
         AT_Row fila2 = nuevaTabla.addRow( "Código", "Cliente", "Fecha", "Servido");
         fila2.setTextAlignment(TextAlignment.CENTER);
         nuevaTabla.addRule();
-        for (int i = 0; i < pedidos.size(); i++) {
-                AT_Row fila = nuevaTabla.addRow(pedidos.get(i).getId(),pedidos.get(i).getNombreCliente(),pedidos.get(i).getFecha(),pedidos.get(i).getServido());
-                fila.setTextAlignment(TextAlignment.CENTER);
-                nuevaTabla.addRule();
+        for (Pedido pedido : pedidos) {
+            AT_Row fila = nuevaTabla.addRow(pedido.getId(), pedido.getNombreCliente(), pedido.getFecha(), pedido.getServido());
+            fila.setTextAlignment(TextAlignment.CENTER);
+            nuevaTabla.addRule();
         }
         nuevaTabla.addRow("","","","");
         System.out.println(nuevaTabla.render(100));
@@ -46,12 +46,14 @@ public class MostrarPedidos {
         fila4.setTextAlignment(TextAlignment.CENTER);
         nuevaTabla.addRule();
             for (int i = 0; i < pedidos.get(0).getProductos().size(); i++) {
-                AT_Row fila = nuevaTabla.addRow(pedidos.get(0).getProductos().get(i).getCode(), pedidos.get(0).getProductos().get(i).getNombre(), pedidos.get(0).getProductos().get(i).getPrecioBase(), pedidos.get(0).getProductos().get(i).getDescuento(), pedidos.get(0).getProductos().get(i).getPvp());
+                AT_Row fila = nuevaTabla.addRow(pedidos.get(0).getProductos().get(i).getCode(), pedidos.get(0).getProductos().get(i).getNombre(), pedidos.get(0).getProductos().get(i).getPrecioBase()+"€", pedidos.get(0).getProductos().get(i).getDescuento(), pedidos.get(0).getProductos().get(i).getPvp()+"€");
                 fila.setTextAlignment(TextAlignment.CENTER);
                 nuevaTabla.addRule();
             }
 
-        nuevaTabla.addRow(null,null,"","Total",pedidos.get(0).getTotalPecioProductos());
+        nuevaTabla.addRow(null,null,"","Total",pedidos.get(0).getTotalPecioProductos()+"€");
+        nuevaTabla.addRule();
+        nuevaTabla.addRow("*","*","*","*","*");
             System.out.println(nuevaTabla.render(100));
 
         }

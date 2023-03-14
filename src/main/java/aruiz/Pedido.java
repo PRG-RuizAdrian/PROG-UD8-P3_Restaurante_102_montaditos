@@ -56,8 +56,8 @@ public class Pedido {
 
     public double getTotalPecioProductos(){
         double total = 0;
-        for (int i = 0; i < productos.size(); i++) {
-            total+=productos.get(i).getPvp();
+        for (Producto producto : productos) {
+            total += producto.getPvp();
         }
         return total;
     }

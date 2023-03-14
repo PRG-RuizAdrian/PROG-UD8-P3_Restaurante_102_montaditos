@@ -24,9 +24,9 @@ public class MostrarProductos {
         AT_Row fila2 = nuevaTabla.addRow(null,null,"Código", "Nombre", "Precio Base");
         fila2.setTextAlignment(TextAlignment.CENTER);
         nuevaTabla.addRule();
-        for (int i = 0; i <productos.size() ; i++) {
-                AT_Row fila = nuevaTabla.addRow(null,null,productos.get(i).getCode(),productos.get(i).getNombre(),productos.get(i).getPrecioBase());
-                fila.setTextAlignment(TextAlignment.CENTER);
+        for (Producto producto : productos) {
+            AT_Row fila = nuevaTabla.addRow(null, null, producto.getCode(), producto.getNombre(), producto.getPrecioBase()+"€");
+            fila.setTextAlignment(TextAlignment.CENTER);
         }
         nuevaTabla.addRule();
         nuevaTabla.addRow("*","*","*","*","*");

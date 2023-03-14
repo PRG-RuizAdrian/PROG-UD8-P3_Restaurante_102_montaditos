@@ -88,18 +88,18 @@ public class ListadoProductos {
 
     public ArrayList<Producto> filtrarProductos2 (TipoMenu tipoMenu){
         ArrayList<Producto> filtrado = new ArrayList<>();
-        for (int i = 0; i < productos.size() ; i++) {
-            if (productos.get(i).getTipoMenu().equals(tipoMenu)){
-                filtrado.add(productos.get(i));
+        for (Producto producto : productos) {
+            if (producto.getTipoMenu().equals(tipoMenu)) {
+                filtrado.add(producto);
             }
         }
         return filtrado;
     }
 
     public Producto anyadirProducto(String codigo){
-        for (int i = 0; i < productos.size(); i++) {
-            if (productos.get(i).getCode().equals(codigo)){
-                return productos.get(i);
+        for (Producto producto : productos) {
+            if (producto.getCode().equals(codigo)) {
+                return producto;
             }
         }
         return null;

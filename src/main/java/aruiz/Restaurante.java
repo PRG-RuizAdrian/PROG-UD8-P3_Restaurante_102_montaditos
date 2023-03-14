@@ -45,21 +45,35 @@ public class Restaurante {
         } while (opcion != 5);
     }
 
-    public void visualizarOrden(ListadoPedidos listadoPedidos){
-        new MostrarPedidos(listadoPedidos.getPedidos()).mostrarPedidos();
-        System.out.println("Introduzca el código de la orden que desear Visualizar");
-        String codigo = scanner.next();
-        ArrayList<Pedido> pedido = new ArrayList<>();
-        pedido.add(listadoPedidos.filtrarPedido(codigo));
-        new MostrarPedidos(pedido).mostrarPedidosConcreto();
+    public void visualizarOrden(ListadoPedidos listadoPedidos) {
+        int aux = 0;
+        do {
+            new MostrarPedidos(listadoPedidos.getPedidos()).mostrarPedidos();
+            System.out.println("Introduzca el código de la orden que desear Visualizar");
+            String codigo = scanner.next();
+            if (listadoPedidos.filtrarPedido(codigo) != null) {
+                ArrayList<Pedido> pedido = new ArrayList<>();
+                pedido.add(listadoPedidos.filtrarPedido(codigo));
+                new MostrarPedidos(pedido).mostrarPedidosConcreto();
+                aux++;
+            } else {
+                System.out.println("Código de pedido incorrecto.");
+            }
+        }while (aux==0);
     }
 
     public void servirPedido(ListadoPedidos listadoPedidos){
+        int aux = 0;
+        do {
         new MostrarPedidos(listadoPedidos.getPedidos()).mostrarPedidos();
         System.out.println("Introduzca el código de la orden que desear servir");
         String codigo = scanner.next();
-        listadoPedidos.filtrarPedido(codigo).setServidoTrue();
-        new MostrarPedidos(listadoPedidos.getPedidos()).mostrarPedidos();
+        if (listadoPedidos.filtrarPedido(codigo) != null) {
+            listadoPedidos.filtrarPedido(codigo).setServidoTrue();
+            new MostrarPedidos(listadoPedidos.getPedidos()).mostrarPedidos();
+            aux++;
+        } else System.out.println("Código de pedido incorrecto.");
+    }while (aux==0);
     }
 
 
