@@ -27,5 +27,15 @@ public class ListadoPedidos {
         return pedidos;
     }
 
-
+    public int getNumeroPedidos(){
+        int aux = 0;
+        for (int i = 0; i < pedidos.size() ; i++) {
+            if(pedidos.get(i) != null){
+                if (i==0){
+                    continue;
+                } else aux++;
+            } else return 0;
+        }
+        return aux+1;
+    }
 }

@@ -11,6 +11,7 @@ public class Producto {
     private int descuento;
     private double iva;
     private TipoMenu tipoMenu;
+    private double pvp;
 
     public Producto(String code, String nombre, String descripcion, double precioBase, double iva, int descuento,  TipoMenu tipoMenu){
         this.code = code;
@@ -20,6 +21,7 @@ public class Producto {
         this.descuento = descuento;
         this.iva = iva;
         this.tipoMenu = tipoMenu;
+        this.pvp = precioBase +(precioBase*descuento);
     }
 
 
@@ -43,4 +45,7 @@ public class Producto {
         return this.descuento;
     }
 
+    public double getPvp(){
+        return pvp;
+    }
 }

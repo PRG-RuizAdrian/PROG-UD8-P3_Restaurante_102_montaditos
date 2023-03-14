@@ -51,7 +51,7 @@ public class Restaurante {
         String codigo = scanner.next();
         ArrayList<Pedido> pedido = new ArrayList<>();
         pedido.add(listadoPedidos.filtrarPedido(codigo));
-        new MostrarPedidos(pedido).mostrarPedidos();
+        new MostrarPedidos(pedido).mostrarPedidosConcreto();
     }
 
     public void servirPedido(ListadoPedidos listadoPedidos){
@@ -65,32 +65,32 @@ public class Restaurante {
 
     public void crearPedido(ListadoProductos listadoProductos, ListadoPedidos listadoPedidos) {
 
-        String setIdentificador = "";
+        String setIdentificador = "o" + listadoPedidos.getNumeroPedidos();
         System.out.println("Introduzca su nombre");
         String setNombreCliente = scanner.next();
         Pedido pedido = new Pedido(setIdentificador, setNombreCliente);
-        repetirTipoProducto(TipoMenu.BEBIDA,"Deseas tomar alguna bebida?",listadoProductos);
+        repetirTipoProducto(TipoMenu.BEBIDA,"Deseas tomar alguna bebida?",pedido,listadoProductos);
         new MostrarProductos(listadoProductos.filtrarProductos(TipoMenu.BEBIDA)).mostrarProductos();
-        repetirTipoProducto(TipoMenu.ENTRANTES,"Deseas tomar algun entrante?",listadoProductos);
+        repetirTipoProducto(TipoMenu.ENTRANTES,"Deseas tomar algun entrante?",pedido,listadoProductos);
         new MostrarProductos(listadoProductos.filtrarProductos(TipoMenu.ENTRANTES)).mostrarProductos();
-        repetirTipoProducto(TipoMenu.MONTADITOS,"Deseas tomar algun montadito?",listadoProductos);
+        repetirTipoProducto(TipoMenu.MONTADITOS,"Deseas tomar algun montadito?",pedido,listadoProductos);
         new MostrarProductos(listadoProductos.filtrarProductos(TipoMenu.MONTADITOS)).mostrarProductos();
-        repetirTipoProducto(TipoMenu.POSTRE,"Postre quieres?",listadoProductos);
+        repetirTipoProducto(TipoMenu.POSTRE,"Postre quieres?",pedido,listadoProductos);
         new MostrarProductos(listadoProductos.filtrarProductos(TipoMenu.POSTRE)).mostrarProductos();
 
         listadoPedidos.anyadirPedido(pedido);
     }
 
-    private void repetirTipoProducto(TipoMenu tipoMenu, String mensaje,ListadoProductos listadoProductos){
+    private void repetirTipoProducto(TipoMenu tipoMenu, String mensaje,Pedido pedido, ListadoProductos listadoProductos){
         System.out.println(mensaje);
         ArrayList<Producto> productos = listadoProductos.filtrarProductos2(tipoMenu);
         MostrarProductos mostrarProductos = new MostrarProductos(productos);
         mostrarProductos.mostrarProductos();
-        anyadirProductosAPedido(listadoProductos);
+        anyadirProductosAPedido(listadoProductos, pedido);
     }
 
 
-    private void anyadirProductosAPedido(ListadoProductos listadoProductos) {
+    private void anyadirProductosAPedido(ListadoProductos listadoProductos, Pedido pedido) {
         do {
             System.out.println("Introduzca el código del producto que desea añadir (0 - Finalizar)");
             String codigo = scanner.next();
@@ -98,7 +98,7 @@ public class Restaurante {
                 break;
             }
             if (listadoProductos.anyadirProducto(codigo)!=null){
-                listadoProductos.anyadirProducto(codigo);
+                pedido.anyadirProducto(listadoProductos.anyadirProducto(codigo));
                 System.out.println(listadoProductos.anyadirProducto(codigo).getCode() + " - " + listadoProductos.anyadirProducto(codigo).getNombre() + " [Añadido]");
             } else {
                 System.out.println("El código del producto introducido no existe");
