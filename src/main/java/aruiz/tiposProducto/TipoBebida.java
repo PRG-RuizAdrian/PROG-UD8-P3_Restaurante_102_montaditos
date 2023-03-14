@@ -1,6 +1,6 @@
 package aruiz.tiposProducto;
 
-public enum caracteristicaBebida {
+public enum TipoBebida {
 
     GRANDE, MEDIANA, PEQUE
 

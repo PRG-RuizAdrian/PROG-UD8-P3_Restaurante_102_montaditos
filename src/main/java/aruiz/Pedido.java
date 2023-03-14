@@ -1,19 +1,51 @@
 package aruiz;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class Pedido {
 
-    private int id;
+    private String id;
+    private String nombreCliente;
+    private LocalDateTime fecha;
+    private boolean servido;
     private ArrayList<Producto> productos;
 
 
-    public Pedido(int id){
-        this.id = id;
+    public Pedido(String id, String nombreCliente){
+        this.nombreCliente = nombreCliente;
+        this.fecha = LocalDateTime.now();
         this.productos = new ArrayList<>();
+        this.id ="o1";
     }
 
+    public void anyadirProducto(Producto producto){
+        productos.add(producto);
+    }
+    public void setId(String id){
+        this.id = id;
+    }
 
+    public String getId(){
+        return id;
+    }
+
+    public String getNombreCliente(){
+        return nombreCliente;
+    }
+
+    public LocalDateTime getFecha(){
+        return fecha;
+    }
+    public void setServidoTrue(){
+        this.servido = true;
+    }
+
+    public String getServido(){
+        if (servido){
+            return "Si";
+        } else return "No";
+    }
 
 
 }
