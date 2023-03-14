@@ -18,10 +18,10 @@ public class Producto {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.precioBase = precioBase;
-        this.descuento = descuento;
+        this.descuento = descuento / 100;
         this.iva = iva;
         this.tipoMenu = tipoMenu;
-        this.pvp = precioBase +(precioBase*descuento);
+        this.pvp = precioBase + (precioBase*descuento);
     }
 
 

@@ -29,11 +29,9 @@ public class ListadoPedidos {
 
     public int getNumeroPedidos(){
         int aux = 0;
-        for (int i = 0; i < pedidos.size() ; i++) {
-            if(pedidos.get(i) != null){
-                if (i==0){
-                    continue;
-                } else aux++;
+        for (Pedido pedido : pedidos) {
+            if (pedido != null) {
+                aux++;
             } else return 0;
         }
         return aux+1;

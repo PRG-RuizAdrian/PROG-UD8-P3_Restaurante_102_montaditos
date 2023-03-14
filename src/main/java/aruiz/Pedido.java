@@ -54,6 +54,12 @@ public class Pedido {
         return productos;
     }
 
-
+    public double getTotalPecioProductos(){
+        double total = 0;
+        for (int i = 0; i < productos.size(); i++) {
+            total+=productos.get(i).getPvp();
+        }
+        return total;
+    }
 
 }
