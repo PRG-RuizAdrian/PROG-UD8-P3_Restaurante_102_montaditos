@@ -23,7 +23,7 @@ public class MostrarPedidos {
         fila2.setTextAlignment(TextAlignment.CENTER);
         nuevaTabla.addRule();
         for (int i = 0; i < pedidos.size(); i++) {
-                AT_Row fila = nuevaTabla.addRow(pedidos.get(i).getId(),pedidos.get(i).getNombreCliente(),pedidos.get(i).getFecha().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),pedidos.get(i).getServido());
+                AT_Row fila = nuevaTabla.addRow(pedidos.get(i).getId(),pedidos.get(i).getNombreCliente(),pedidos.get(i).getFecha(),pedidos.get(i).getServido());
                 fila.setTextAlignment(TextAlignment.CENTER);
                 nuevaTabla.addRule();
         }
@@ -36,11 +36,14 @@ public class MostrarPedidos {
         AsciiTable nuevaTabla = new AsciiTable();
         nuevaTabla.addRule();
         AT_Row fila1 = nuevaTabla.addRow(null,null,null,null,"== Restaurante 20 Montaditos ==");
+        nuevaTabla.addRule();
         fila1.setTextAlignment(TextAlignment.CENTER);
-       nuevaTabla.addRule();
-
-        AT_Row fila3 = nuevaTabla.addRow( "", "Nombre", "Precio", "Descuenta(%)", "PvP");
-        fila3.setTextAlignment(TextAlignment.CENTER);
+        AT_Row fila2 = nuevaTabla.addRow("Pedido: "+ pedidos.get(0).getId(),null, "Cliente: "+ pedidos.get(0).getNombreCliente(),null, "Fecha: "+ pedidos.get(0).getFecha() );
+        nuevaTabla.addRule();
+        AT_Row fila3 = nuevaTabla.addRow(null,null,null,null,"Listado productos solicitados" );
+        nuevaTabla.addRule();
+        AT_Row fila4 = nuevaTabla.addRow( "", "Nombre", "Precio", "Descuenta(%)", "PvP");
+        fila4.setTextAlignment(TextAlignment.CENTER);
         nuevaTabla.addRule();
             for (int i = 0; i < pedidos.get(0).getProductos().size(); i++) {
                 AT_Row fila = nuevaTabla.addRow(pedidos.get(0).getProductos().get(i).getCode(), pedidos.get(0).getProductos().get(i).getNombre(), pedidos.get(0).getProductos().get(i).getPrecioBase(), pedidos.get(0).getProductos().get(i).getDescuento(), pedidos.get(0).getProductos().get(i).getPvp());
@@ -48,7 +51,7 @@ public class MostrarPedidos {
                 nuevaTabla.addRule();
             }
 
-        nuevaTabla.addRow("","","","Total",pedidos.get(0).getTotalPecioProductos());
+        nuevaTabla.addRow(null,null,"","Total",pedidos.get(0).getTotalPecioProductos());
             System.out.println(nuevaTabla.render(100));
 
         }

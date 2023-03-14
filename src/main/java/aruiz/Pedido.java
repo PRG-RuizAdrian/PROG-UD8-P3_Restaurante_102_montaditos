@@ -37,8 +37,8 @@ public class Pedido {
         return nombreCliente;
     }
 
-    public LocalDateTime getFecha(){
-        return fecha;
+    public String getFecha(){
+        return fecha.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
     }
     public void setServidoTrue(){
         this.servido = true;
