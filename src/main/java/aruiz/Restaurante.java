@@ -30,14 +30,17 @@ public class Restaurante {
             if (scanner.hasNextInt()) {
                 opcion = scanner.nextInt();
             } else opcion = 0;
-            scanner.next();
+
             switch (opcion) {
                 case 1-> crearPedido(listadoProductos, listadoPedidos);
                 case 2-> new MostrarPedidos(listadoPedidos.getPedidos()).mostrarPedidos();
                 case 3-> visualizarOrden(listadoPedidos);
                 case 4-> servirPedido(listadoPedidos);
                 case 5-> System.out.println("Gracias por utilizar el sistema de gestión de pedidos.");
-                default-> System.out.println("Opción no válida. Por favor, seleccione otra opción.");
+                default-> {
+                    System.out.println("Opción no válida. Por favor, seleccione otra opción.");
+                    scanner.next();
+                }
             }
         } while (opcion != 5);
     }

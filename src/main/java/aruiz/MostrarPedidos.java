@@ -18,8 +18,8 @@ public class MostrarPedidos {
 
         AsciiTable nuevaTabla = new AsciiTable();
         nuevaTabla.addRule();
-        AT_Row fila1 = nuevaTabla.addRow(null,"== Restaurante 20 Montaditos ==",null,null);
-        fila1.setTextAlignment(TextAlignment.CENTER);
+       // AT_Row fila1 = nuevaTabla.addRow(null,"== Restaurante 20 Montaditos ==",null,null);
+        //fila1.setTextAlignment(TextAlignment.CENTER);
         nuevaTabla.addRule();
         AT_Row fila2 = nuevaTabla.addRow( "Código", "Cliente", "Fecha", "Servido");
         fila2.setTextAlignment(TextAlignment.CENTER);
