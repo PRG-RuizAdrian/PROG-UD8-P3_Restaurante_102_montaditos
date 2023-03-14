@@ -27,8 +27,10 @@ public class Restaurante {
             System.out.println("4. Servir pedido");
             System.out.println("5. Salir");
             System.out.println("Selecciona una opción :");
-            opcion = scanner.nextInt();
-
+            if (scanner.hasNextInt()) {
+                opcion = scanner.nextInt();
+            } else opcion = 0;
+            scanner.next();
             switch (opcion) {
                 case 1-> crearPedido(listadoProductos, listadoPedidos);
                 case 2-> new MostrarPedidos(listadoPedidos.getPedidos()).mostrarPedidos();
