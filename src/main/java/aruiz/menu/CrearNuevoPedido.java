@@ -2,6 +2,7 @@ package aruiz.menu;
 
 import aruiz.*;
 import aruiz.clasesRestaurante2.ColaPedidosPendientes;
+import aruiz.exceptions.NoEncontradoException;
 import aruiz.tiposProducto.TipoMenu;
 
 
@@ -53,16 +54,16 @@ public class CrearNuevoPedido extends Opcion{
     }
     private void anyadirProductosAPedido(ListadoProductos listadoProductos, Pedido pedido) {
         do {
+            try {
             System.out.println("Introduzca el código del producto que desea añadir (0 - Finalizar)");
             String codigo = Restaurante.scanner.next();
             if (codigo.equals("0")){
                 break;
             }
-            if (listadoProductos.anyadirProducto(codigo)!=null){
                 pedido.anyadirProducto(listadoProductos.anyadirProducto(codigo));
                 System.out.println(listadoProductos.anyadirProducto(codigo).getCode() + " - " + listadoProductos.anyadirProducto(codigo).getNombre() + " [Añadido]");
-            } else {
-                System.out.println("El código del producto introducido no existe");
+            } catch (NoEncontradoException e){
+                System.out.println(e);
             }
         } while (true) ;
     }
@@ -86,4 +87,5 @@ public class CrearNuevoPedido extends Opcion{
             default: return null;
         }
     }
+
 }

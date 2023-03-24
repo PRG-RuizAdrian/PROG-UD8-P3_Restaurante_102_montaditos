@@ -1,5 +1,6 @@
 package aruiz;
 
+import aruiz.exceptions.NoEncontradoException;
 import aruiz.tiposProducto.*;
 
 import java.util.ArrayList;
@@ -96,11 +97,11 @@ public class ListadoProductos {
         return filtrado;
     }
 
-    public Producto anyadirProducto(String codigo){
+    public Producto anyadirProducto(String codigo) throws NoEncontradoException {
         for (Producto producto : productos) {
             if (producto.getCode().equals(codigo)) {
                 return producto;
-            }
+            } else throw new NoEncontradoException();
         }
         return null;
     }
