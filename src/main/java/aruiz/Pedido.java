@@ -1,5 +1,6 @@
 package aruiz;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -15,9 +16,9 @@ public class Pedido {
 
 
 
-    public Pedido(String id, String nombreCliente){
+    public Pedido(String id, String nombreCliente, LocalDateTime fecha){
         this.nombreCliente = nombreCliente;
-        this.fecha = LocalDateTime.now();
+        this.fecha = fecha;
         this.productos = new ArrayList<>();
         this.id = id;
     }
@@ -25,6 +26,7 @@ public class Pedido {
     public void anyadirProducto(Producto producto){
         productos.add(producto);
     }
+
     public void setId(String id){
         this.id = id;
     }
@@ -38,8 +40,9 @@ public class Pedido {
     }
 
     public String getFecha(){
-        return fecha.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        return fecha.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
     }
+
     public void setServidoTrue(){
         this.servido = true;
     }
