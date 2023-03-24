@@ -24,5 +24,4 @@ public class Restaurante {
         menu.anyadir(new Salir("Salir"));
         menu.ejecutar();
     }
-
 }

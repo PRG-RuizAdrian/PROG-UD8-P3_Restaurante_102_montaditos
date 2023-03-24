@@ -101,11 +101,9 @@ public class ListadoProductos {
         for (Producto producto : productos) {
             if (producto.getCode().equals(codigo)) {
                 return producto;
-            } else throw new NoEncontradoException();
-        }
-        return null;
+            }
+        }throw new NoEncontradoException();
+
     }
-
-
 
 }

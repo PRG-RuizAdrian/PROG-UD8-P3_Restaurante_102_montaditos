@@ -4,6 +4,7 @@ package aruiz.clasesRestaurante2;
 import aruiz.Pedido;
 import aruiz.exceptions.ColaLLenaException;
 import aruiz.exceptions.ColaVaciaException;
+import aruiz.exceptions.NoEncontradoException;
 
 import java.util.ArrayList;
 
@@ -31,13 +32,12 @@ public class ColaPedidosPendientes {
     } throw new ColaVaciaException();
     }
 
-    public Pedido filtrarPedidosPendientes(String codigo){
+    public Pedido filtrarPedidosPendientes(String codigo) throws NoEncontradoException {
         for (Pedido pedido : pedidosPendientes) {
             if (pedido.getId().equals(codigo)) {
                 return pedido;
             }
-        }
-        return null;
+        }throw new NoEncontradoException();
     }
 
     public boolean estaLlena(){

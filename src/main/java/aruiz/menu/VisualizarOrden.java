@@ -5,6 +5,7 @@ import aruiz.ListadoProductos;
 import aruiz.MostrarPedidos;
 import aruiz.Pedido;
 import aruiz.clasesRestaurante2.ColaPedidosPendientes;
+import aruiz.exceptions.NoEncontradoException;
 
 import java.util.ArrayList;
 
@@ -29,12 +30,12 @@ public class VisualizarOrden extends Opcion{
             new MostrarPedidos(colaPedidosPendientes.getPedidosPendientes()).mostrarPedidos();
             System.out.println("Introduzca el código de la orden que desear Visualizar");
             String codigo = scanner.next();
-            if (colaPedidosPendientes.filtrarPedidosPendientes(codigo) != null) {
+            try {
                 ArrayList<Pedido> pedido = new ArrayList<>();
                 pedido.add(colaPedidosPendientes.filtrarPedidosPendientes(codigo));
                 new MostrarPedidos(pedido).mostrarPedidosConcreto();
                 aux++;
-            } else {
+            }catch (NoEncontradoException e){
                 System.out.println("Código de pedido incorrecto.");
             }
         }while (aux==0);

@@ -1,5 +1,7 @@
 package aruiz;
 
+import aruiz.exceptions.NoEncontradoException;
+
 import java.util.ArrayList;
 
 public class ListadoPedidos {
@@ -14,13 +16,12 @@ public class ListadoPedidos {
         pedidos.add(pedido);
     }
 
-    public Pedido filtrarPedido(String codigo){
+    public Pedido filtrarPedido(String codigo) throws NoEncontradoException {
         for (Pedido pedido : pedidos) {
             if (pedido.getId().equals(codigo)) {
                 return pedido;
             }
-        }
-        return null;
+        } throw new NoEncontradoException();
     }
     public boolean listaVacia(){
        return getNumeroPedidos() == 0;
