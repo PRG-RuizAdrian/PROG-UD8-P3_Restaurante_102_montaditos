@@ -24,7 +24,7 @@ public class ListadoPedidos {
         } throw new NoEncontradoException();
     }
     public boolean listaVacia(){
-       return getNumeroPedidos() == 0;
+       return pedidos.size() == 0;
     }
 
     public ArrayList<Pedido> getPedidos(){
