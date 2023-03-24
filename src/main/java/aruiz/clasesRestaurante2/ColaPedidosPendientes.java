@@ -39,7 +39,9 @@ public class ColaPedidosPendientes {
             }
         }throw new NoEncontradoException();
     }
-
+    public boolean listaVacia(){
+        return pedidosPendientes.size() == 0;
+    }
     public boolean estaLlena(){
         return pedidosPendientes.size() == pedidosMaximos;
     }
