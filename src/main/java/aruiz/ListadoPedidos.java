@@ -22,6 +22,9 @@ public class ListadoPedidos {
         }
         return null;
     }
+    public boolean listaVacia(){
+       return getNumeroPedidos() == 0;
+    }
 
     public ArrayList<Pedido> getPedidos(){
         return pedidos;

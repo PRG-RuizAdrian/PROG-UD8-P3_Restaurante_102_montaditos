@@ -4,6 +4,7 @@ import aruiz.ListadoPedidos;
 import aruiz.MostrarPedidos;
 import aruiz.Pedido;
 import aruiz.clasesRestaurante2.ColaPedidosPendientes;
+import aruiz.exceptions.ColaVaciaException;
 
 import java.util.ArrayList;
 
@@ -25,18 +26,20 @@ public class VisualizarHistorico extends Opcion{
 
     public void visualizarOrden(ListadoPedidos listadoPedidos) {
         int aux = 0;
+        if (!listadoPedidos.listaVacia()) {
         do {
-            new MostrarPedidos(listadoPedidos.getPedidos()).mostrarPedidos();
-            System.out.println("Introduzca el código de la orden que desear Visualizar");
-            String codigo = scanner.next();
-            if (listadoPedidos.filtrarPedido(codigo) != null) {
-                ArrayList<Pedido> pedido = new ArrayList<>();
-                pedido.add(listadoPedidos.filtrarPedido(codigo));
-                new MostrarPedidos(pedido).mostrarPedidosConcreto();
-                aux++;
-            } else {
-                System.out.println("Código de pedido incorrecto.");
-            }
-        }while (aux==0);
+                new MostrarPedidos(listadoPedidos.getPedidos()).mostrarPedidos();
+                System.out.println("Introduzca el código de la orden que desear Visualizar");
+                String codigo = scanner.next();
+                if (listadoPedidos.filtrarPedido(codigo) != null) {
+                    ArrayList<Pedido> pedido = new ArrayList<>();
+                    pedido.add(listadoPedidos.filtrarPedido(codigo));
+                    new MostrarPedidos(pedido).mostrarPedidosConcreto();
+                    aux++;
+                }
+            }while (aux==0);
+        }else {
+            throw new ColaVaciaException();
+        }
     }
 }

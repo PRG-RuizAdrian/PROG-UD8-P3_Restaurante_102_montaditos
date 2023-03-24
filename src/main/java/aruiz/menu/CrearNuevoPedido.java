@@ -29,7 +29,7 @@ public class CrearNuevoPedido extends Opcion{
 
     public void crearPedido(ListadoProductos listadoProductos, ColaPedidosPendientes colaPedidosPendientes) {
 
-        String setIdentificador = "o" + colaPedidosPendientes.getPedidosPendientes().size();
+        String setIdentificador = "o" + (colaPedidosPendientes.getPedidosPendientes().size()+1);
         System.out.println("Introduzca su nombre");
         String setNombreCliente = scanner.next();
         Pedido pedido = new Pedido(setIdentificador, setNombreCliente,fecha());

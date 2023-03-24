@@ -2,6 +2,7 @@ package aruiz.menu;
 
 import aruiz.ListadoPedidos;
 import aruiz.MostrarPedidos;
+import aruiz.Pedido;
 import aruiz.Restaurante;
 import aruiz.clasesRestaurante2.ColaPedidosPendientes;
 
@@ -22,6 +23,7 @@ public class ServirPedido extends Opcion{
 
     @Override
     public void ejecutar() {servirPedido(listadoPedidos,colaPedidosPendientes);}
+    int aux = 0;
     public void servirPedido(ListadoPedidos listadoPedidos, ColaPedidosPendientes colaPedidosPendientes){
 
         do {
@@ -31,15 +33,19 @@ public class ServirPedido extends Opcion{
             switch (opcion){
                 case "S":
                     colaPedidosPendientes.getPedidosPendientes().get(0).setServidoTrue();
-                    listadoPedidos.anyadirPedido(colaPedidosPendientes.obtenerSiguiente());
+                    Pedido pedido = colaPedidosPendientes.obtenerSiguiente();
+                    listadoPedidos.anyadirPedido(pedido);
                     System.out.println("Pedido servido");
+                    aux = 1;
                     break;
                 case "N":
                     System.out.println("Pedido no servido");
-                default: continue;
+                    aux = 1;
+                default:
+                    System.out.println("Error! Opción incorrecta");
             }
-            new MostrarPedidos(colaPedidosPendientes.getPedidosPendientes()).mostrarPedidos();
-                }while (true);
+            new MostrarPedidos(listadoPedidos.getPedidos()).mostrarPedidos();
+                }while (aux == 0);
 
 
     }

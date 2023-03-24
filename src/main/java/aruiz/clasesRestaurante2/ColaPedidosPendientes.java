@@ -3,6 +3,7 @@ package aruiz.clasesRestaurante2;
 
 import aruiz.Pedido;
 import aruiz.exceptions.ColaLLenaException;
+import aruiz.exceptions.ColaVaciaException;
 
 import java.util.ArrayList;
 
@@ -17,17 +18,17 @@ public class ColaPedidosPendientes {
     }
 
     public void anyadir(Pedido pedido){
-        if (!estaLlena()){
-        pedidosPendientes.add(pedido);
-        } else throw new ColaLLenaException();
+        if (estaLlena()){
+            throw new ColaLLenaException();
+        } else pedidosPendientes.add(pedido);
     }
 
     public Pedido obtenerSiguiente(){
-    if (!existenPedidos()){
+    if (existenPedidos()){
         Pedido pedido = pedidosPendientes.get(0);
         pedidosPendientes.remove(0);
         return pedido;
-    } throw new ColaLLenaException();
+    } throw new ColaVaciaException();
     }
 
     public Pedido filtrarPedidosPendientes(String codigo){
